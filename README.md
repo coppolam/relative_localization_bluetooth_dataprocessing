@@ -1,5 +1,5 @@
 
-This repository holds the MATLAB code to generate the results in the paper:
+This repository holds the MATLAB code to download and analyze the results in the paper:
 
 **"On-board communication-based relative localization for collision avoidance in Micro Air Vehicle teams"**.
 *Mario Coppola, Kimberly N. McGuire, Kirk Y. W. Scheper, Guido C. H. E. de Croon, 2018.*
