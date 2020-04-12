@@ -86,4 +86,4 @@ acc_pref = 1.7;
 eps_pref = (ka*roomsize*tan(acc_pref/2)) - (R + roomsize)
 
 %%
-printallfigureslatex(get(0,'Children'), 'figures/','paper_wide_half',[765 767])
+latex_printallfigures(get(0,'Children'), 'figures/','paper_wide_half',[765 767])

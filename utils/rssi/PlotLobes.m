@@ -27,7 +27,7 @@ elseif strcmp(mode,'graph')
     hold on
     
     plot((headings),lobes,'-', 'Color', 'r','DisplayName','Lobe','Linewidth',2);
-    makeaxespi;
+    makeaxespi(gca,[-pi pi],'x');
     ylim([-15 15])
     xlabel('Relative Bearing [rad]');
     ylabel('Error [dB]');

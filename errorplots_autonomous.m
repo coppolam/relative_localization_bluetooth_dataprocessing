@@ -182,8 +182,8 @@ disp('Done')
 
 %%
 
-rrm = 0
-brm = 0
+rrm = 0;
+brm = 0;
 cc = 1;
 % corresponds to figure 17 on paper
 if nuavs == 3
@@ -275,7 +275,7 @@ mean(bs)
 mean(rs)
 
 % Only the bearing error is saved
-printallfigureslatex(get(0,'Children'), 'figures/', 'paper_ultrawide_half_alternative',[6868])
+latex_printallfigures(get(0,'Children'), 'figures/', 'paper_ultrawide_third',[6868])
 
 
 %%
@@ -298,7 +298,7 @@ combineddata_autonomous_rangeerror = [];
 
 for m = 1:numel(datafile)
     
-    for idn = 1:length(rIDs);
+   for idn = 1:length(rIDs);
         
         i = rIDs(idn,1);
         j = rIDs(idn,2);
@@ -308,64 +308,5 @@ for m = 1:numel(datafile)
         end
     end
 end
-save([datafolder,'/combineddata_autonomous_',num2str(nuavs)],'combineddata_autonomous_bearingerror','combineddata_autonomous_rangeerror')
-
-%% Convergence plot
-cc = 1;
-newfigure(6868682.'',['exp_bearingerror_convergence_',num2str(nuavs)]);
-hold on
-
-bs = zeros(1,nuavs^2-nuavs*numel(datafile));
-rs = zeros(1,nuavs^2-nuavs*numel(datafile));
-bm = zeros(1,nuavs^2-nuavs*numel(datafile));
-rm = zeros(1,nuavs^2-nuavs*numel(datafile));
-
-for m = 1:numel(datafile)
-    for idn = 1:length(rIDs);
-        
-        i = rIDs(idn,1);
-        j = rIDs(idn,2);
-        
-        if i ~= j
-            bm(cc) = mean(uav{m}{i,j}.bearing_error);
-            bs(cc) = std( uav{m}{i,j}.bearing_error);
-            brm(cc) = rmse(uav{m}{i,j}.bearing_error);
-            cc = cc+1;
-            plot(uav{m}{i,j}.time(sp{m}:ep{m})-uav{m}{i,j}.time(sp{m}),uav{m}{i,j}.bearing_error)
-        end
-    end
-end
-
-ylabel('Bearing Error $[rad]$')
-xlabel('Time [s]')
-
-ylim([-pi pi])
-ax = gca;
-
-xlim([0 30])
-ax.XTick = [0:5:30];
-
-ax.YTick = [-pi -pi/2 0 pi/2 pi];
-ax.YTickLabel = {'$-\pi$','$-\pi/2$','0','$\pi/2$','$\pi$'};
-ylim([-pi pi]);
-axis square
-
-% printallfigureslatex(get(0,'Children'), 'Figures/', 'paper_square_fourth',6868682)
-
-%% RSSI error
-ccc = 1;
-errstd = zeros(1,nuavs^2-nuavs*numel(datafile));
-for m = 1:numel(datafile)
-    for idn = 1:length(rIDs)
-        
-        i = rIDs(idn,1);
-        j = rIDs(idn,2);
-        
-        if i ~= j
-            error = uav{m}{i,j}.rssi(sp{m}:ep{m}) - logdistdB(-67,2,uav{m}{i,j}.dist);
-            errstd(ccc) = std(error);
-            ccc = ccc + 1;
-        end
-    end
-end
-errstd
+% save([datafolder,'/combineddata_autonomous_',num2str(nuavs)],'combineddata_autonomous_bearingerror','combineddata_autonomous_rangeerror')
+% errstd

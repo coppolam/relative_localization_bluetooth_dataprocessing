@@ -20,7 +20,7 @@ h2= hist(combineddata_autonomous_bearingerror_3 , xvec);
 plot(xvec,h2/numel(combineddata_autonomous_bearingerror_3),'r');
 hold off
 clear h1 h2
-makeaxespi
+makeaxespi(gca,[-pi pi],'x')
 ax.YTick = 0:0.05:0.15;
 ylim([0 0.15])
 % ax.YTickLabel = {'$-\pi$','$-\pi/2$','0','$\pi/2$','$\pi$'};
@@ -74,7 +74,7 @@ hold on
 clear h1 h2
 legend('2 AR.Drones', '3 AR.Drones','Location','NorthOutside','Orientation','Horizontal')
 
-makeaxespi
+makeaxespi(gca,[-pi pi],'x')
 
 ax.YTick = 0:0.05:0.25;
 ylim([0 0.25])
@@ -82,5 +82,5 @@ xlabel('Bearing Error $[rad]$')
 ylabel('Probability Density [-]')
 
 %% Print the figures
-printallfigureslatex(get(0,'Children'), 'figures/', 'paper_square_fourth',[1000 1001 1002])
+latex_printallfigures(get(0,'Children'), 'figures/', 'paper_square_fourth',[1000 1001 1002])
 

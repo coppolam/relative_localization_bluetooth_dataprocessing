@@ -111,4 +111,4 @@ disp(['std. dev. ' num2str(B)])
 
 
 %% Save figures
-printallfigureslatex(get(0,'Children'),'figures/','paper_wide_third',[785 786 787])
+latex_printallfigures(get(0,'Children'),'figures/','paper_wide_third',[785 786 787])

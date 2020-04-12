@@ -282,7 +282,7 @@ xlabel('Time [s]')
 mean(rrm)
 mean(bs)
 mean(rs)
-printallfigureslatex(get(0,'Children'), 'figures/', 'paper_ultrawide_half_alternative',[6868, 6969])
+latex_printallfigures(get(0,'Children'), 'figures/', 'paper_ultrawide_third',[6868, 6969])
 
 %% Combine all errors in one vector for some extra analysis if you like.
 % This is needed to generate the histograms in a separate script
@@ -385,7 +385,7 @@ ax.YTick = [-pi -pi/2 0 pi/2 pi];
 ax.YTickLabel = {'$-\pi$','$-\pi/2$','0','$\pi/2$','$\pi$'};
 ylim([-pi pi]);
 axis square
-printallfigureslatex(get(0,'Children'), 'figures/', 'paper_square_fourth',[6868682])
+latex_printallfigures(get(0,'Children'), 'figures/', 'paper_square_fourth',[6868682])
 
 %% Standard deviation RSSI
 ccc = 1;

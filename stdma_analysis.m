@@ -49,5 +49,5 @@ ax.XTick = 0:0.2:1.0;
 % ax.YTick = 0:200:800;
 legend('2 antennas', '3 antennas','Location','NorthOutside','Orientation','Horizontal')
 
-printallfigureslatex(get(0,'Children'), 'figures/','paper_wide_fourth',[1 2 ])
+% latex_printallfigures(get(0,'Children'), 'figures/','paper_wide_fourth',[1 2 ])
 

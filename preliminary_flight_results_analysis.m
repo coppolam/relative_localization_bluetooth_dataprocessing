@@ -168,7 +168,7 @@ ploterror;      % Plots the error over distance
 
 
 %%
-printallfigureslatex(get(0,'Children'), 'figures/','paper_ultrawide_half',[451,452, 499 ,449])
+latex_printallfigures(get(0,'Children'), 'figures/','paper_wide_half',[451,452, 499 ,449])
 %% Calculate the standard deviation around the slope line
 % This is scaled by the distance so that it is distance independent!
 
@@ -184,66 +184,66 @@ vari_dist_hist = hist(vari_dist,spread);
 [mu_rxV,  sigma_rxV]  = GetDistributionParameters('normal',vari_rxV);
 [mu_dist, sigma_dist] = GetDistributionParameters('normal',vari_dist);
 
-count = newfigure(44,'add',['histfit_',estimator,'_avgover',num2str(runs),'runs_',day,set,est]);
-stem(spread,vari_rxV_hist/length(spread),'r.'); hold on
-stem(spread,vari_dist_hist/length(spread),'b.')
-plot(spread, pdf('normal', spread, mu_dist, sigma_dist),'b--','LineWidth',2)
-plot(spread, pdf('normal', spread, mu_rxV, sigma_rxV),'r--','LineWidth',2)
-xlabel('Error about slope [m]')
-ylabel('Probability Density [-]')
-legend( 'Histogram Real Error','Histogram Estimated Error',...
-    ['Real Error Fit (\mu = ', num2str(mu_rxV,2), ', \sigma = ', num2str(sigma_rxV,2),')'],...
-    ['Estimated Error Fit (\mu = ', num2str(mu_dist,2), ', \sigma = ', num2str(sigma_dist,2),')'])
+% count = newfigure(44,'add',['histfit_',estimator,'_avgover',num2str(runs),'runs_',day,set,est]);
+% stem(spread,vari_rxV_hist/length(spread),'r.'); hold on
+% stem(spread,vari_dist_hist/length(spread),'b.')
+% plot(spread, pdf('normal', spread, mu_dist, sigma_dist),'b--','LineWidth',2)
+% plot(spread, pdf('normal', spread, mu_rxV, sigma_rxV),'r--','LineWidth',2)
+% xlabel('Error about slope [m]')
+% ylabel('Probability Density [-]')
+% legend( 'Histogram Real Error','Histogram Estimated Error',...
+%     ['Real Error Fit (\mu = ', num2str(mu_rxV,2), ', \sigma = ', num2str(sigma_rxV,2),')'],...
+%     ['Estimated Error Fit (\mu = ', num2str(mu_dist,2), ', \sigma = ', num2str(sigma_dist,2),')'])
 
 %% Analyze the correlation between P matrix and error
 
-exl = makevertical(xji_store(1,:)) - makevertical(sV(1,:));
-eyl = makevertical(yji_store(1,:)) - makevertical(sV(2,:));
-
-count = newfigure(count,'add',['Pmatx_',estimator,'_',day,set]);
-plot(time,exl);
-hold on
-plot(time,reshape(P_store(1,1,:,1),N,1));
-plot(time,emag)
-legend('ex','Px')
-xlabel('Time [s]')
-ylabel('Error [m]')
-hold off
-
-count = newfigure(count,'add',['Pmaty_',estimator,'_',day,set]);
-plot(time,eyl);
-hold on
-plot(time,reshape(P_store(2,2,:,1),N,1));
-plot(time,emag)
-legend('ey','Py')
-xlabel('Time [s]')
-ylabel('Error [m]')
-hold off
+% exl = makevertical(xji_store(1,:)) - makevertical(sV(1,:));
+% eyl = makevertical(yji_store(1,:)) - makevertical(sV(2,:));
+% 
+% count = newfigure(count,'add',['Pmatx_',estimator,'_',day,set]);
+% plot(time,exl);
+% hold on
+% plot(time,reshape(P_store(1,1,:,1),N,1));
+% plot(time,emag)
+% legend('ex','Px')
+% xlabel('Time [s]')
+% ylabel('Error [m]')
+% hold off
+% 
+% count = newfigure(count,'add',['Pmaty_',estimator,'_',day,set]);
+% plot(time,eyl);
+% hold on
+% plot(time,reshape(P_store(2,2,:,1),N,1));
+% plot(time,emag)
+% legend('ey','Py')
+% xlabel('Time [s]')
+% ylabel('Error [m]')
+% hold off
 
 %% Check Distribution1
 % 
 % close all
-tt = logdistdB(Pmod(1),Pmod(2),dist);
-ttexact = logdistdB(Pld(1),Pld(2),dist);
-
-at = RSSI;
-err = tt - at;
-errexact = ttexact - at;
-hist(err)
+% tt = logdistdB(Pmod(1),Pmod(2),dist);
+% ttexact = logdistdB(Pld(1),Pld(2),dist);
+% 
+% at = RSSI;
+% err = tt - at;
+% errexact = ttexact - at;
+% hist(err)
 
 %%
 % close all
-figure
-[mean1, sigma1] = GetDistributionParameters('normal',err);
-[mean2, sigma2] = GetDistributionParameters('normal',errexact);
-plot(sort(randn(size(err))*sigma1),sort(err)-mean1, 'b.')
-hold on
-plot(sort(randn(size(errexact))*sigma2), sort(errexact)-mean2, 'r.')
-
-xlabel('(Sorted) Normally Distributed values')
-ylabel('(Sorted) Error values')
-plot([-20 20],[-20 20],'k--')
-hold off
-
-xlim([-10 10])
-ylim([-10 10])
+% figure
+% [mean1, sigma1] = GetDistributionParameters('normal',err);
+% [mean2, sigma2] = GetDistributionParameters('normal',errexact);
+% plot(sort(randn(size(err))*sigma1),sort(err)-mean1, 'b.')
+% hold on
+% plot(sort(randn(size(errexact))*sigma2), sort(errexact)-mean2, 'r.')
+% 
+% xlabel('(Sorted) Normally Distributed values')
+% ylabel('(Sorted) Error values')
+% plot([-20 20],[-20 20],'k--')
+% hold off
+% 
+% xlim([-10 10])
+% ylim([-10 10])
